@@ -60,7 +60,7 @@ const InterviewExp = () => {
   const [selectedVerdict, setSelectedVerdict] = useState("All");
   const [expandedItems, setExpandedItems] = useState({});
 
-  const [experiences , setExperiences] = useState([]);
+  const [experiences, setExperiences] = useState([]);
 
   const filteredExperiences = interviewExperiences.filter((exp) => {
     return (
@@ -89,20 +89,20 @@ const InterviewExp = () => {
     }));
   };
 
-  useEffect(()=>{
-    const fetchExperiences = async()=>{
-      try{
-        const res = await axios.get("http://localhost:3000/api/v1/getInteviewExp" , {
-          headers : {"Content-Type" : "application/json"},
-          withCredentials : true,
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/api/v1/getInteviewExp", {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
         });
         console.log(res);
-        if(res.data.success){
+        if (res.data.success) {
           setExperiences(res.data.data);
         }
 
       }
-      catch(err){
+      catch (err) {
         alert(err.response.data.message);
       }
     };
@@ -110,28 +110,27 @@ const InterviewExp = () => {
   }, []);
 
   return (
-    <div className="p-6">
+    <div className="p-6 bg-[#F5E6D3] dark:bg-[#2C1810]">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2">Interview Experiences</h1>
-        <p className="text-gray-400">Learn from real interview experiences shared by the community</p>
+        <h1 className="text-3xl font-bold text-[#2C1810] dark:text-white mb-2">Interview Experiences</h1>
+        <p className="text-[#2C1810] dark:text-gray-400">Learn from real interview experiences shared by the community</p>
       </div>
 
       {/* Filters */}
       <div className="space-y-4 mb-8">
         <div>
-          <h3 className="text-sm font-medium text-gray-300 mb-2">Company</h3>
+          <h3 className="text-sm font-medium text-[#2C1810] dark:text-gray-300 mb-2">Company</h3>
           <div className="flex gap-2 flex-wrap">
             {companies.map((company) => (
               <Button
                 key={company}
                 variant={selectedCompany === company ? "default" : "outline"}
                 size="sm"
-                className={`${
-                  selectedCompany === company
-                    ? "bg-purple-600 hover:bg-purple-700 text-white"
-                    : "border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800"
-                }`}
+                className={`${selectedCompany === company
+                  ? "bg-[#C1502E] text-[#F5E6D3] hover:text-white hover:bg-[#A03A1B]"
+                  : "border-gray-700 text-[#C1502E] dark:text-white hover:text-white hover:bg-[#C1502E]"
+                  }`}
                 onClick={() => setSelectedCompany(company)}
               >
                 {company}
@@ -141,18 +140,17 @@ const InterviewExp = () => {
         </div>
 
         <div>
-          <h3 className="text-sm font-medium text-gray-300 mb-2">Result</h3>
+          <h3 className="text-sm font-medium text-[#2C1810] dark:text-gray-300 mb-2">Result</h3>
           <div className="flex gap-2 flex-wrap">
             {verdicts.map((verdict) => (
               <Button
                 key={verdict}
                 variant={selectedVerdict === verdict ? "default" : "outline"}
                 size="sm"
-                className={`${
-                  selectedVerdict === verdict
-                    ? "bg-purple-600 hover:bg-purple-700 text-white"
-                    : "border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800"
-                }`}
+                className={`${selectedVerdict === verdict
+                  ? "bg-[#C1502E] text-[#F5E6D3] hover:text-white hover:bg-[#A03A1B]"
+                  : "border-gray-700 text-[#C1502E] dark:text-white hover:text-white hover:bg-[#C1502E]"
+                  }`}
                 onClick={() => setSelectedVerdict(verdict)}
               >
                 {verdict}
